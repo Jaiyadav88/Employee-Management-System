@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Management System</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Employee List</h1>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Designation</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${allemployeelist}">
+            <td th:text="${employee.employeeId}"></td>
+            <td th:text="${employee.employeeName}"></td>
+            <td th:text="${employee.employeeEmail}"></td>
+            <td th:text="${employee.employeeAge}"></td>
+            <td th:text="${employee.employeeDesignation}"></td>
+            <td>
+                <a th:href="@{/updateform/{id}(id=${employee.employeeId})}" class="btn btn-primary btn-sm">Update</a>
+            </td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${employee.employeeId})}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/addnewemployee" class="btn btn-success mt-3">Add New Employee</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
